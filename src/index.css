@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubintu", sans-serif;
+  background-color: rgb(25, 26, 28);
+}
+
+.App {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
