@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import HomePage from "./pages/home-page/home-page";
 import Header from "./companents/header/header";
-import "./index.css";
 import { store } from "./companents/redux";
+import GamePage from "./companents/game-page/game-page";
+import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")).render(
 
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/app/:title" element={<GamePage />} />
           </Routes>
         </div>
       </Router>
