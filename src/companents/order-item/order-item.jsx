@@ -1,0 +1,31 @@
+import { useDispatch } from "react-redux";
+import "./order-item.css";
+import GameCover from "../game-cover/game-cover";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { deleteItemFromCart } from "../redux/cart/reducer";
+
+export default function OrderItem({ game }) {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(deleteItemFromCart(game.id));
+  };
+
+  return (
+    <div className="order-item">
+      <div className="order-item__cover">
+        <GameCover image={game.image} />
+      </div>
+      <div className="order-item__title">
+        <span>{game.title}</span>
+      </div>
+      <div className="order-item__price">
+        <span>{game.price} тг. </span>
+        <AiOutlineClockCircle
+          size={25}
+          className="cart-item__delete-icon"
+          onClick={handleClick}
+        />
+      </div>
+    </div>
+  );
+}

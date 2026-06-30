@@ -3,13 +3,21 @@ import CartMenu from "../cart-menu/cart-menu";
 import { BiCartAlt } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { calcTotalPrice } from "../utils";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ItemsInCart from "../items-in-cart/items-in-cart";
+import { useNavigate } from "react-router-dom";
 
 export default function CartBlock() {
   const [isCartMenuVisible, setisCartMenuVisible] = useState(false);
   const items = useSelector((state) => state.cart.itemsInCart);
   const totalPrice = calcTotalPrice(items);
+  const navigate = useNavigate();
+
+  const handleClick = useCallback(() => {
+    setisCartMenuVisible(false);
+    navigate("/order");
+  }, [navigate]);
+
   return (
     <div className="cart-block">
       <ItemsInCart quantity={items.length} />
@@ -21,7 +29,7 @@ export default function CartBlock() {
       {totalPrice > 0 && (
         <span className="cart-block__total-price">{totalPrice} тг</span>
       )}
-      {isCartMenuVisible && <CartMenu items={items} onClick={() => null} />}
+      {isCartMenuVisible && <CartMenu items={items} onClick={handleClick} />}
     </div>
   );
 }

@@ -1,0 +1,28 @@
+import { useSelector } from "react-redux";
+import "./order-page.css";
+import { calcTotalPrice } from "../../companents/utils";
+import OrderItem from "../../companents/order-item/order-item";
+
+export default function OrderPage() {
+  const items = useSelector((state) => state.cart.itemsInCart);
+  if (items.length < 1) {
+    return <h1>Ваша корзина пуста</h1>;
+  }
+  return (
+    <div className="order-page">
+      <div className="order-page__left">
+        {items.map((game) => (
+          <OrderItem game={game} />
+        ))}
+      </div>
+      <div className="order-page__right">
+        <div className="order-page__total-price">
+          <span>
+            {items.length} Товаров на сумму
+            {calcTotalPrice(items)} тг.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
